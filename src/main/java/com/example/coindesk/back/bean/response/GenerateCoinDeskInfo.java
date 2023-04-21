@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class RegenCoinDeskInfo {
+public class GenerateCoinDeskInfo {
     String updateTime;
     Map<String,CoinExchangeInfo> info;
 }

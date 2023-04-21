@@ -10,19 +10,19 @@ import java.math.BigDecimal;
 @Getter
 public class CoinInfoFromDesk {
     @JsonProperty(value = "code")
-    String code;
+    private String code;
     @JsonProperty(value = "symbol")
-    String symbol;
+    private String symbol;
     @JsonProperty(value = "rate")
-    String rate;
+    private String rate;
     @JsonProperty(value = "description")
-    String description;
+    private String description;
     @JsonProperty(value = "rate_float")
-    BigDecimal rate_float;
+    private BigDecimal rate_float;
 
     public CoinExchangeInfo from(){
         CoinExchangeInfo res=new CoinExchangeInfo();
-        res.setChName(this.getCode());
+        res.setEnName(this.code);
         res.setExchangeRate(this.getRate());
         return res;
     }
