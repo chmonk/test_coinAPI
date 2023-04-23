@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "enName": "USD",
+    "chName": "美元"
+  },
+  {
+    "id": 2,
+    "enName": "GBP",
+    "chName": "英鎊"
+  },
+  {
+    "id": 3,
+    "enName": "EUE",
+    "chName": "歐元"
+  },
+  {
+    "id": 4,
+    "enName": "NTD",
+    "chName": "台幣"
+  }
+]
