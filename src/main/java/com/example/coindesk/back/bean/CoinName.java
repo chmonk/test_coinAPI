@@ -2,10 +2,7 @@ package com.example.coindesk.back.bean;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -24,5 +21,10 @@ public class CoinName {
 
     @Column(name="CH",length = 50)
     private String chName;
+
+    public CoinName(String en,String ch){
+        this.enName=en;
+        this.chName=ch;
+    }
 
 }

@@ -2,7 +2,9 @@ package com.example.coindesk.back.bean.request;
 
 import com.example.coindesk.back.bean.CoinName;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
+@NoArgsConstructor
 public class CoinNameReq {
     @JsonProperty(value="id")
     private Integer id;
@@ -20,9 +23,13 @@ public class CoinNameReq {
     @JsonProperty(value="ch")
     private String chName;
 
-    public CoinName toCoinName(){
 
-        CoinNameReq a=this;
+    public CoinNameReq(String en,String ch){
+        this.enName=en;
+        this.chName=ch;
+    }
+
+    public CoinName toCoinName(){
 
         CoinName temp=new CoinName();
 
