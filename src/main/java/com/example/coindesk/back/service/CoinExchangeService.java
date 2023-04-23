@@ -10,6 +10,7 @@ import com.example.coindesk.back.client.ApiClient;
 import com.example.coindesk.back.util.DateUtil;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -26,9 +27,12 @@ public class CoinExchangeService implements ICoinExchangeService {
     @Autowired
     ApiClient client;
 
+    @Autowired
+    private Environment env;
+
     public GenerateCoinDeskInfo getCoinExchangeInfo() throws Exception {
 
-        String uri = "https://api.coindesk.com/v1/bpi/currentprice.json";
+        String uri = env.getProperty("constant.api.coindeskApi");
 
         CoinDeskRawResponse apiRes = client.sendGet(uri, CoinDeskRawResponse.class);
 
