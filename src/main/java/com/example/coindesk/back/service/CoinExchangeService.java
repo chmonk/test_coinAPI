@@ -9,6 +9,8 @@ import com.example.coindesk.back.bean.response.GenerateCoinDeskInfo;
 import com.example.coindesk.back.client.ApiClient;
 import com.example.coindesk.back.util.DateUtil;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class CoinExchangeService implements ICoinExchangeService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CoinExchangeService.class);
+
 
     @Autowired
     ICoinNameService coinNameService;
@@ -60,6 +65,12 @@ public class CoinExchangeService implements ICoinExchangeService {
         CoinInfoFromDesk info = entry.getValue();
         CoinExchangeInfo cMap = info.from();
         String chName = Optional.ofNullable(coinNameMap.get(enName)).map(CoinName::getChName).orElse("");
+
+        //log to trace the lost coinName
+        if(chName.equals("")){
+            logger.warn(String.format("db lost %1$s data", enName));
+        }
+
         cMap.setChName(chName);
         return cMap;
     }
