@@ -34,7 +34,7 @@ public class CoinNameReq {
         CoinName temp=new CoinName();
 
         if(this.id!=null)temp.setId(this.id);
-        temp.setEnName(this.enName);
+        temp.setEnName(this.enName.toUpperCase());
         temp.setChName(this.chName);
 
         return temp;

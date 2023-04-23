@@ -50,7 +50,7 @@ public class CoinNameService implements ICoinNameService {
 
     @Override
     public CoinName findByEn(String enName) {
-        return Optional.of(repository.findByEnName(enName)).orElse(null);
+        return Optional.of(repository.findByEnName(enName.toUpperCase())).orElse(null);
     }
 
 
