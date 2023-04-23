@@ -15,7 +15,7 @@ import static com.example.coindesk.back.bean.response.CommonResponse.setCurrentD
 
 
 @RestController
-@RequestMapping("/coins")
+@RequestMapping("/coinInfo")
 public class CoinInfoController {
 
     @Autowired
@@ -24,6 +24,11 @@ public class CoinInfoController {
     @GetMapping("/coinNames/{id}")
     public CommonResponse<CoinName> find(@PathVariable(value = "id") Integer id) {
         return setCurrentDate(new CommonResponse(coinNameService.findById(id)));
+    }
+
+    @GetMapping("/coinNames/name/{enName}")
+    public CommonResponse<CoinName> find(@PathVariable(value = "enName") String enName) {
+        return setCurrentDate(new CommonResponse(coinNameService.findByEn(enName)));
     }
 
     @GetMapping("/coinNames")
@@ -47,11 +52,19 @@ public class CoinInfoController {
         CommonResponse<CoinName> res;
         if (req.getId() == null) {
             res = new CommonResponse<>(StatusEnum.FAIL, "id should not be empty.", null);
-        } else if (coinNameService.findById(req.getId()) == null) {
-            res = new CommonResponse<>(StatusEnum.FAIL, "data not exists.", null);
-        } else {
-            CoinName result = coinNameService.update(req);
-            res = new CommonResponse<>(result);
+        } else{
+
+            CoinName getByid = coinNameService.findById(req.getId());
+            CoinName getByEn= coinNameService.findByEn(req.getEnName());
+
+            if(getByid==null){
+                res = new CommonResponse<>(StatusEnum.FAIL, "data not exists.", null);
+            }else if(getByEn!=null && getByid.getId()!=getByEn.getId()){
+                res = new CommonResponse<>(StatusEnum.FAIL, "data enName duplicate.", null);
+            }else{
+                CoinName result = coinNameService.update(req);
+                res = new CommonResponse<>(result);
+            }
         }
 
         return setCurrentDate(res);
