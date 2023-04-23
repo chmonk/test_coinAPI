@@ -6,7 +6,7 @@ import com.example.coindesk.back.bean.request.CoinNameReq;
 import java.util.List;
 import java.util.Map;
 
-public interface ICoinNameServie {
+public interface ICoinNameService {
 
     List<CoinName> findAll();
 

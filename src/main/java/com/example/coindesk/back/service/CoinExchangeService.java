@@ -12,22 +12,21 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class CoinExchangeService {
+public class CoinExchangeService implements ICoinExchangeService {
 
     @Autowired
-    ICoinNameServie coinNameService;
+    ICoinNameService coinNameService;
 
     @Autowired
     ApiClient client;
 
-    public GenerateCoinDeskInfo getCoinExchangeInfo() throws IOException {
+    public GenerateCoinDeskInfo getCoinExchangeInfo() throws Exception {
 
         String uri = "https://api.coindesk.com/v1/bpi/currentprice.json";
 
