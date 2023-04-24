@@ -3,15 +3,15 @@ package com.example.coindesk.back.service;
 
 import com.example.coindesk.back.bean.CoinName;
 import com.example.coindesk.back.bean.request.CoinNameReq;
-import com.example.coindesk.back.client.ApiClient;
 import com.example.coindesk.back.dao.CoinNameRepository;
+import com.example.coindesk.back.exception.CustomException;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Map;
@@ -70,7 +70,7 @@ public class CoinNameService implements ICoinNameService {
         CoinName newData = req.toCoinName();
 
         if(findByEn(newData.getEnName())!=null){
-            throw new Exception("duplicate enName already exist.");
+            throw new CustomException("duplicate enName already exist.",HttpStatus.BAD_REQUEST);
         }else{
             repository.save(newData);
             return newData;
