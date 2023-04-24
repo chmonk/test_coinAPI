@@ -34,7 +34,7 @@ public class CoinNameServiceTest {
     }
 
     @Test
-    public void insert_uniqueName_should_success() throws JsonProcessingException {
+    public void insert_uniqueName_should_success() throws Exception {
         //prepare
         CoinNameReq req = getTestInsertReq();
         coinNameService.insert(req);
@@ -47,7 +47,7 @@ public class CoinNameServiceTest {
     }
 
     @Test
-    public void insert_duplicateEnName_should_throw_DataIntegrityViolationException() throws JsonProcessingException {
+    public void insert_duplicateEnName_should_throw_DataIntegrityViolationException() throws Exception {
         // prepare
         CoinName insertRes=coinNameService.insert(getTestInsertReq());
         // assert: unique key duplicate error
@@ -56,7 +56,7 @@ public class CoinNameServiceTest {
 
 
     @Test
-    public void update_existingData_should_success() throws JsonProcessingException {
+    public void update_existingData_should_success() throws Exception {
         //prepare
         String updateChName="updateName";
 
@@ -75,7 +75,7 @@ public class CoinNameServiceTest {
     }
 
     @Test
-    public void delete_existing_should_success_and_change_count_equal_1() throws JsonProcessingException {
+    public void delete_existing_should_success_and_change_count_equal_1() throws Exception {
         // prepare
         CoinName insertRes=coinNameService.insert(getTestInsertReq());
 
@@ -85,7 +85,7 @@ public class CoinNameServiceTest {
     }
 
     @Test
-    public void delete_non_existing_should_success_and_change_count_equal_0() throws JsonProcessingException {
+    public void delete_non_existing_should_success_and_change_count_equal_0() throws Exception {
         // prepare
         CoinName insertRes=coinNameService.insert(getTestInsertReq());
 
