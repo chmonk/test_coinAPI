@@ -66,10 +66,15 @@ public class CoinNameService implements ICoinNameService {
     }
 
     @Override
-    public CoinName insert(CoinNameReq req) {
+    public CoinName insert(CoinNameReq req) throws Exception {
         CoinName newData = req.toCoinName();
-        repository.save(newData);
-        return newData;
+
+        if(findByEn(newData.getEnName())!=null){
+            throw new Exception("duplicate enName already exist.");
+        }else{
+            repository.save(newData);
+            return newData;
+        }
     }
 
     @Override

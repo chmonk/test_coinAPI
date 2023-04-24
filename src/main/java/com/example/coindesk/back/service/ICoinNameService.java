@@ -18,7 +18,7 @@ public interface ICoinNameService {
 
     CoinName update(CoinNameReq req);
 
-    CoinName insert(CoinNameReq req);
+    CoinName insert(CoinNameReq req) throws Exception;
 
     int deleteById(int id);
 }

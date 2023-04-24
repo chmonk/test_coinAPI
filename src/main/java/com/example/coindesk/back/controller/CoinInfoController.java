@@ -42,7 +42,7 @@ public class CoinInfoController {
     }
 
     @PostMapping("/coinNames")
-    public CommonResponse<CoinName> insert(@RequestBody CoinNameReq req) {
+    public CommonResponse<CoinName> insert(@RequestBody CoinNameReq req) throws Exception {
         return setCurrentDate(new CommonResponse(coinNameService.insert(req)));
     }
 
