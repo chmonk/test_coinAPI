@@ -55,7 +55,7 @@ public class CoinInfoController {
         } else{
 
             CoinName getByid = coinNameService.findById(req.getId());
-            CoinName getByEn= coinNameService.findByEn(req.getEnName());
+            CoinName getByEn = coinNameService.findByEn(req.getEnName());
 
             if(getByid==null){
                 res = new CommonResponse<>(StatusEnum.FAIL, "data not exists.", null);
