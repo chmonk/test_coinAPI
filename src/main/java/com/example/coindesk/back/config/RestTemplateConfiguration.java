@@ -1,4 +1,4 @@
-package com.example.coindesk.common;
+package com.example.coindesk.back.config;
 
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
