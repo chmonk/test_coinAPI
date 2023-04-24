@@ -3,6 +3,7 @@ package com.example.coindesk;
 
 import com.example.coindesk.back.bean.CoinName;
 import com.example.coindesk.back.bean.request.CoinNameReq;
+import com.example.coindesk.back.exception.CustomException;
 import com.example.coindesk.back.service.ICoinNameService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
@@ -51,7 +52,7 @@ public class CoinNameServiceTest {
         // prepare
         CoinName insertRes=coinNameService.insert(getTestInsertReq());
         // assert: unique key duplicate error
-        Assertions.assertThrows(DataIntegrityViolationException.class, () -> coinNameService.insert(getTestInsertReq()));
+        Assertions.assertThrows(CustomException.class, () -> coinNameService.insert(getTestInsertReq()));
     }
 
 
